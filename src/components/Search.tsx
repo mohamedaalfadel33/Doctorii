@@ -111,7 +111,7 @@ const Search = () => {
           </p>
           <div className="flex items-center bg-zinc-50 rounded-sm">
             <UserRound />
-            <Input className="p-6" />
+            <Input className="p-6 w-52" />
           </div>
         </div>
       </div>
