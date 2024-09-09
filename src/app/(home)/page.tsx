@@ -1,6 +1,7 @@
 import Search from '@/components/Search';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import OurDeals from './OurDeals';
 
 export default function Home() {
   return (
@@ -26,7 +27,7 @@ export default function Home() {
         </p>
       </div>
       {/* OUR DOCTORS */}
-      <div className="bg-zinc-800 p-6 flex justify-center gap-8">
+      <div className="bg-zinc-800 p-6 flex justify-center gap-8 mt-24">
         <Button className="bg-zinc-50 px-10 text-zinc-800 rounded-full">
           Our Doctors
         </Button>
@@ -34,6 +35,9 @@ export default function Home() {
           Our Deals
         </Button>
       </div>
+
+      {/* OUR Deals */}
+      <OurDeals />
     </main>
   );
 }
