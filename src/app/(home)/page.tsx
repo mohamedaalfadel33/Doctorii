@@ -1,7 +1,6 @@
 import Search from '@/components/Search';
 import { Button } from '@/components/ui/button';
-
-import OurDeals from '@/components/homePage/OurDeals';
+import OurDeals from '@/components/OurDeals';
 
 export default function Home() {
   return (
