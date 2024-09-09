@@ -1,7 +1,7 @@
 import Search from '@/components/Search';
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
-import OurDeals from './OurDeals';
+
+import OurDeals from '@/components/homePage/OurDeals';
 
 export default function Home() {
   return (
