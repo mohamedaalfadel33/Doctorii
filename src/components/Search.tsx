@@ -1,5 +1,5 @@
-'use client';
-import { Button } from '@/components/ui/button';
+"use client";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,23 +7,23 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from "@/components/ui/dropdown-menu";
 import {
   ChevronDown,
   HeartHandshake,
   LocateIcon,
   MapPin,
   UserRound,
-} from 'lucide-react';
-import { useState } from 'react';
-import { Input } from './ui/input';
+} from "lucide-react";
+import { useState } from "react";
+import { Input } from "./ui/input";
 
 const Search = () => {
-  const [position, setPosition] = useState('bottom');
+  const [position, setPosition] = useState("bottom");
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="bg-zinc-600 p-14 rounded-sm flex gap-6">
+  
+      <div className="flex flex-col gap-6 rounded-sm bg-zinc-600 p-14 lg:flex-row">
         <div>
           <p className="font-sans text-zinc-50">Choose Specialty</p>
           <DropdownMenu>
@@ -34,6 +34,7 @@ const Search = () => {
                 <ChevronDown />
               </Button>
             </DropdownMenuTrigger>
+
             <DropdownMenuContent className="w-56">
               <DropdownMenuSeparator />
               <DropdownMenuRadioGroup
@@ -109,13 +110,13 @@ const Search = () => {
           <p className="font-sans text-zinc-50">
             Doctor/Hospital name (optional)
           </p>
-          <div className="flex items-center bg-zinc-50 rounded-sm">
+          <div className="flex items-center rounded-sm bg-zinc-50">
             <UserRound />
-            <Input className="p-6 w-52" />
+            <Input className="w-52 p-6" />
           </div>
         </div>
       </div>
-    </div>
+
   );
 };
 

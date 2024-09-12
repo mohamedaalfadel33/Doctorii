@@ -1,13 +1,13 @@
 import Image from "next/image";
 import React from "react";
-import { Button } from "./ui/button";
+import { Button } from "../../ui/button";
 import Link from "next/link";
 
-const Doctor = () => {
+const AreYouADoctor = () => {
   return (
     <section>
       <div className="m-4 rounded-md bg-zinc-800 p-12">
-        <div className="flex justify-between">
+        <div className="lg:flex lg:justify-between">
           <div className="text-4xl text-zinc-50">
             <h2>
               Are You a <span className="text-blue-400 underline">Doctor</span>{" "}
@@ -27,7 +27,7 @@ const Doctor = () => {
           <Image src={"/doctor.png"} alt="doctor" width={400} height={400} />
         </div>
         <Link href={"/signup"}>
-          <Button className="rounded-full bg-zinc-50 p-24 text-7xl text-zinc-800 hover:bg-blue-300">
+          <Button className="mt-8 rounded-full bg-zinc-50 p-8 text-zinc-800 hover:bg-blue-300 lg:p-24 lg:text-7xl">
             JOIN US
           </Button>
         </Link>
@@ -36,4 +36,4 @@ const Doctor = () => {
   );
 };
 
-export default Doctor;
+export default AreYouADoctor;
