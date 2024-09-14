@@ -4,6 +4,7 @@ import DoctorProfileCard from "@/components/DoctorProfile/DoctorProfileCard";
 import Gallery from "@/components/DoctorProfile/Gallery";
 import { BsExclamationCircle } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
+
 const page = ({ params }: any) => {
   const doctorName = params.doctor;
   return (
