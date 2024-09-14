@@ -2,7 +2,6 @@ import AboutDoctorCard from "@/components/DoctorProfile/AboutDoctorCard";
 import BookingInformation from "@/components/DoctorProfile/BookingInformation";
 import DoctorProfileCard from "@/components/DoctorProfile/DoctorProfileCard";
 import Gallery from "@/components/DoctorProfile/Gallery";
-import React from "react";
 import { BsExclamationCircle } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
 const page = ({ params }: any) => {
