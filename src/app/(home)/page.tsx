@@ -1,8 +1,8 @@
-import OurDeals from "@/components/sections/HomePage/OurDeals";
-import TopSpecialties from "@/components/sections/HomePage/TopSpecialties";
-import MainSection from "@/components/sections/HomePage/MainSection";
-import OurDoctors from "@/components/sections/HomePage/OurDoctors";
-import AreYouADoctor from "@/components/sections/HomePage/AreYouADoctor";
+import OurDeals from "@/components/HomePage/OurDeals";
+import TopSpecialties from "@/components/HomePage/TopSpecialties";
+import MainSection from "@/components/HomePage/MainSection";
+import OurDoctors from "@/components/HomePage/OurDoctors";
+import AreYouADoctor from "@/components/HomePage/AreYouADoctor";
 
 export default function Home() {
   return (

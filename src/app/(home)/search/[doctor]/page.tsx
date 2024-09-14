@@ -1,5 +1,7 @@
-import AboutDoctorCard from "@/components/doctorProfile/AboutDoctorCard";
-import DoctorProfileCard from "@/components/doctorProfile/DoctorProfileCard";
+import AboutDoctorCard from "@/components/DoctorProfile/AboutDoctorCard";
+import BookingInformation from "@/components/DoctorProfile/BookingInformation";
+import DoctorProfileCard from "@/components/DoctorProfile/DoctorProfileCard";
+import Gallery from "@/components/DoctorProfile/Gallery";
 import React from "react";
 import { BsExclamationCircle } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
@@ -17,10 +19,15 @@ const page = ({ params }: any) => {
           />
           <AboutDoctorCard
             icon={<CiLocationOn size={30} />}
-            title="About the doctor"
+            title="Location"
             description="Khartoum, AL-Amarat - Ibn Sina Hospital"
           />
         </div>
+      </div>
+
+      <div className="mt-8 grid grid-cols-2 gap-4">
+        <Gallery />
+        <BookingInformation />
       </div>
     </section>
   );

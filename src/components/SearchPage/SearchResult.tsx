@@ -1,7 +1,7 @@
 import { DollarSign, Star } from "lucide-react";
 import React from "react";
-import { Button } from "./ui/button";
-import DoctorCard from "./ui/doctorCard";
+import { Button } from "../ui/button";
+import DoctorCard from "../ui/doctorCard";
 import Link from "next/link";
 
 const SearchResult = () => {

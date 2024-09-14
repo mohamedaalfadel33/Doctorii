@@ -6,7 +6,7 @@ import Star from "../ui/star";
 
 const DoctorProfileCard = ({ name }: any) => {
   return (
-    <div className="flex gap-2 rounded-3xl bg-sky-200 p-8">
+    <div className="flex gap-2 rounded-3xl bg-sky-300/40 p-8">
       <div>
         <Image
           src="/1584844567410.jpeg"

@@ -1,5 +1,5 @@
 import React from "react";
-import ImagesSlider from "../../ui/ImagesSlider";
+import ImagesSlider from "../ui/ImagesSlider";
 
 const TopSpecialties = () => {
   return (

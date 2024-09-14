@@ -1,6 +1,7 @@
 import Filters from "@/components/Filters";
-import Search from "@/components/Search";
-import SearchResult from "@/components/SearchResult";
+import Search from "@/components/SearchPage/Search";
+import SearchResult from "@/components/SearchPage/SearchResult";
+
 import { Button } from "@/components/ui/button";
 import React from "react";
 
@@ -15,10 +16,9 @@ const page = () => {
         <div className="mx-12 mt-16 flex gap-16">
           <Filters />
         </div>
-     
-          <div className="mt-16 flex justify-center">
-            <SearchResult />
-       
+
+        <div className="mt-16 flex justify-center">
+          <SearchResult />
         </div>
       </div>
     </main>
