@@ -11,7 +11,7 @@ const Badge = ({ icon, text, className }: badgeProps) => {
   return (
     <div
       className={cn(
-        `flex w-fit items-center gap-2 rounded-full bg-slate-400 px-4 py-[1px] ${className} text-zinc-50`,
+        `flex w-fit items-center gap-2 rounded-full bg-slate-400 px-4 py-[1px] text-zinc-50 ${className} `,
       )}
     >
       {icon}

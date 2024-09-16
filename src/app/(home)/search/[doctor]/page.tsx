@@ -1,5 +1,6 @@
 import AboutDoctorCard from "@/components/DoctorProfile/AboutDoctorCard";
 import BookingInformation from "@/components/DoctorProfile/BookingInformation";
+import CustomerReview from "@/components/DoctorProfile/CustomerReview";
 import DoctorProfileCard from "@/components/DoctorProfile/DoctorProfileCard";
 import Gallery from "@/components/DoctorProfile/Gallery";
 import { BsExclamationCircle } from "react-icons/bs";
@@ -28,6 +29,10 @@ const page = ({ params }: any) => {
       <div className="mt-8 grid grid-cols-2 gap-4">
         <Gallery />
         <BookingInformation />
+      </div>
+
+      <div>
+        <CustomerReview />
       </div>
     </section>
   );
