@@ -1,9 +1,18 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React from "react";
+import { useForm } from "react-hook-form";
 
-const page = () => {
+const Page = () => {
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
+
   return (
     <div className="p-12">
       <h2 className="text-5xl tracking-wide">Update Profile</h2>
@@ -12,6 +21,7 @@ const page = () => {
         <div>
           <Label>Name</Label>
           <Input
+            {...register("name")}
             placeholder="Mohamed"
             type="text"
             className="w-96 bg-zinc-100 p-6"
@@ -42,4 +52,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

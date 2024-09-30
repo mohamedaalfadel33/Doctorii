@@ -1,40 +1,77 @@
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import SectionContainer from '@/components/ui/SectionContainer';
-import Link from 'next/link';
-import React from 'react';
+"use client";
 
-const page = () => {
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { useForm } from "react-hook-form";
+
+type FormData = {
+  email: string;
+  password: string;
+};
+
+const Page = () => {
+  const router = useRouter();
+  const { register, handleSubmit } = useForm<FormData>();
+
+  const onSubmit = (data: FormData) => {
+    console.log(data);
+    const response = fetch("http://localhost:8085/api/v1/patients/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        router.push("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
-    <section className="min-h-[100vh] flex flex-col gap-8">
-
+    <section className="flex min-h-[100vh] flex-col gap-8">
       {/* Main Text */}
-      <div className="flex flex-col items-center ">
+      <div className="flex flex-col items-center">
         <h1 className="text-7xl">Doctorii</h1>
-        <h2 className="text-sm mt-4 font-sans">Appointment Made Easier</h2>
+        <h2 className="mt-4 font-sans text-sm">Appointment Made Easier</h2>
       </div>
 
       {/* Email & Password input */}
-      <form className="flex flex-col gap-12 items-center justify-center ">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col items-center justify-center gap-12"
+      >
         <div className="flex flex-col gap-6">
           <div className="w-96">
-            <Label className="font-sans ">Email</Label>
+            <Label className="font-sans">Email</Label>
             <Input
-              className="p-6 bg-zinc-200"
+              {...register("email")}
+              className="bg-zinc-200 p-6"
               type="email"
               placeholder="Your Email Address"
             />
           </div>
           <div className="w-96">
-            <Label className="font-sans ">Password</Label>
+            <Label className="font-sans">Password</Label>
             <Input
-              className="p-6 bg-zinc-200"
+              {...register("password")}
+              className="bg-zinc-200 p-6"
               type="password"
               placeholder="Your Password"
             />
           </div>
-          <Link href={'/'} className="underline text-sm font-sans">
+          <Link href={"/"} className="font-sans text-sm underline">
             Forgot your password?
           </Link>
         </div>
@@ -44,12 +81,12 @@ const page = () => {
       </form>
 
       {/* Footer */}
-      <footer className="mt-auto bg-primary flex p-8 justify-center items-center gap-8">
+      <footer className="mt-auto flex items-center justify-center gap-8 bg-primary p-8">
         <h2 className="text-zinc-50">Don’t have an account?</h2>
-        <Link href={'/signup'}>
+        <Link href={"/signup"}>
           <Button
-            variant={'outline'}
-            className="rounded-full px-20 py-5 bg-zinc-50"
+            variant={"outline"}
+            className="rounded-full bg-zinc-50 px-20 py-5"
           >
             Create Account
           </Button>
@@ -59,4 +96,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
