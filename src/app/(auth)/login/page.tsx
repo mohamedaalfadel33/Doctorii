@@ -18,7 +18,6 @@ const Page = () => {
   const { register, handleSubmit } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
     const response = fetch("http://localhost:8085/api/v1/patients/login", {
       method: "POST",
       headers: {
