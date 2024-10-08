@@ -9,15 +9,32 @@ import { useForm } from "react-hook-form";
 const Page = () => {
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     console.log(data);
+
+    const req = await fetch(
+      "http://localhost:8085/api/v1/patients/update/66f96ed655dc318969f98b7d",
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          city: data.city,
+        }),
+      },
+    );
   };
 
   return (
     <div className="p-12">
       <h2 className="text-5xl tracking-wide">Update Profile</h2>
 
-      <form className="mt-12 flex flex-col gap-8">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="mt-12 flex flex-col gap-8"
+      >
         <div>
           <Label>Name</Label>
           <Input
@@ -30,6 +47,7 @@ const Page = () => {
         <div>
           <Label>City</Label>
           <Input
+            {...register("city")}
             placeholder="Mohamed"
             type="text"
             className="w-96 bg-zinc-100 p-6"
