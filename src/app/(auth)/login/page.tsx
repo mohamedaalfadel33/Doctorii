@@ -81,7 +81,7 @@ const Page = () => {
 
       {/* Footer */}
       <footer className="mt-auto flex items-center justify-center gap-8 bg-primary p-8">
-        <h2 className="text-zinc-50">Don’t have an account?</h2>
+        <h2 className="text-zinc-50">Don&apos;t have an account?</h2>
         <Link href={"/signup"}>
           <Button
             variant={"outline"}
