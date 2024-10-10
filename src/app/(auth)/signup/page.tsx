@@ -19,34 +19,22 @@ const Page = () => {
   const { register, handleSubmit } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("email", data.email);
-    formData.append("password", data.password);
-    formData.append("gender", data.gender);
-    formData.append("image", data.image[0]);
-
-    try {
-      const response = await fetch(
-        "http://localhost:8085/api/v1/patients/signup",
-        {
-          method: "POST",
-          body: formData,
-        },
-      );
-      if (response.ok) {
-        // Handle successful signup
-        const data = await response.json();
-        console.log(data);
-
-        console.log("Signup successful");
-      } else {
-        // Handle error
-        console.error("Signup failed");
-      }
-    } catch (error) {
-      console.error("Error during signup:", error);
-    }
+    const res = await fetch("http://localhost:8085/api/v1/patients/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+        gender: data.gender,
+        photo: data.image,
+      }),
+    });
+    const data1 = await res.json();
+    console.log(data1);
   };
 
   return (
@@ -122,13 +110,22 @@ const Page = () => {
               <Label className="font-sans">Your Photo</Label>
               <Input
                 {...register("image")}
+                type="text"
+                placeholder="Your Photo"
+              />
+            </div>
+
+            {/* <div className="w-96">
+              <Label className="font-sans">Your Photo</Label>
+              <Input
+                {...register("image")}
                 accept="image/*"
                 multiple
                 className="bg-zinc-200 p-6"
                 type="file"
                 placeholder="Your Photo"
               />
-            </div>
+            </div> */}
 
             {/* <div className="w-96">
               <Label className="font-sans">City</Label>

@@ -31,7 +31,7 @@ const Page = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        router.push("/");
+        // router.push("/");
       })
       .catch((error) => {
         console.error(error);
