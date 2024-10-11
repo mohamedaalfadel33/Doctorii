@@ -4,7 +4,7 @@ export async function POST(request: Request) {
   const { email, password } = await request.json();
 
   // 1. get the data from the API
-  const res = await fetch(`${process.env.BASE_URL}/users/login`, {
+  const res = await fetch(`${process.env.BASE_URL}/patients/login`, {
     method: 'POST',
     credentials: 'include',
     body: JSON.stringify({
@@ -23,8 +23,6 @@ export async function POST(request: Request) {
     const response = await res.json();
     return new NextResponse(JSON.stringify(response));
   }
-
-  console.log(res);
 
   // extract the [set-cookie] string
 
