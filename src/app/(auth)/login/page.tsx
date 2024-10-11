@@ -20,7 +20,7 @@ function LoginPage() {
   const onSubmit = async (formData: FormData) => {
     await axios
       .post('/api/auth/login', formData)
-      .then((response) => {
+      .then((response : any) => {
         console.log('Response Data:', response.data);
 
         if (response.data.status === 'success' && typeof window !== 'undefined')
