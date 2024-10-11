@@ -1,10 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { Button } from "@/components/ui/button";
+import toast from "react-hot-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useState } from "react";
+import { set, SubmitHandler, useForm } from "react-hook-form";
+import { ScaleLoader } from "react-spinners";
 
 type FormData = {
   name: string;
@@ -16,7 +20,56 @@ type FormData = {
 };
 
 const Page = () => {
+  const GenderOptions = ["Male", "Female"];
+  const [gender, setGender] = useState("Male");
   const { register, handleSubmit } = useForm<FormData>();
+  const [file, setFile] = useState<File | null>(null);
+  const [imageData, setImageData] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false); // State for loading
+
+  const handleGenderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setGender(event.target.value);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handleImageSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!file) return;
+
+    setLoading(true);
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Upload failed");
+      }
+
+      const data = await response.json();
+      setImageData(data);
+      setError(null);
+      toast.success("Image uploaded successfully!");
+    } catch (error: any) {
+      setError(error.message);
+      setImageData(null);
+      toast.error(`Upload failed: ${error.message}`);
+    } finally {
+      setLoading(false); // Set loading to false after the upload finishes
+    }
+  };
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     const res = await fetch("http://localhost:8085/api/v1/patients/signup", {
@@ -30,7 +83,7 @@ const Page = () => {
         password: data.password,
         confirmPassword: data.confirmPassword,
         gender: data.gender,
-        photo: data.image,
+        photo: imageData.secure_url,
       }),
     });
     const data1 = await res.json();
@@ -46,116 +99,105 @@ const Page = () => {
       </div>
 
       {/*  Inputs */}
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-8 px-12"
-      >
-        <h1 className="text-2xl">SignUp</h1>
+      <h1 className="px-12 text-2xl">SignUp</h1>
+      <div className="flex justify-center">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col gap-8 px-12"
+        >
+          <div className="flex gap-8">
+            <div className="flex flex-col gap-6">
+              <div className="w-96">
+                <Label className="font-sans">Email</Label>
+                <Input
+                  {...register("email")}
+                  className="bg-zinc-200 p-6"
+                  type="email"
+                  placeholder="Your Email Address"
+                />
+              </div>
 
-        <div className="flex gap-8">
-          <div className="flex flex-col gap-6">
-            <div className="w-96">
-              <Label className="font-sans">Email</Label>
-              <Input
-                {...register("email")}
-                className="bg-zinc-200 p-6"
-                type="email"
-                placeholder="Your Email Address"
-              />
+              <div className="w-96">
+                <Label className="font-sans">Password</Label>
+                <Input
+                  {...register("password")}
+                  className="bg-zinc-200 p-6"
+                  type="password"
+                  placeholder="Your Password"
+                />
+              </div>
+
+              <div className="w-96">
+                <Label className="font-sans">Confirm Password</Label>
+                <Input
+                  {...register("confirmPassword")}
+                  className="bg-zinc-200 p-6"
+                  type="password"
+                  placeholder="Confirm Password"
+                />
+              </div>
             </div>
 
-            <div className="w-96">
-              <Label className="font-sans">Password</Label>
-              <Input
-                {...register("password")}
-                className="bg-zinc-200 p-6"
-                type="password"
-                placeholder="Your Password"
-              />
-            </div>
+            <div className="flex flex-col gap-6">
+              <div className="w-96">
+                <Label className="font-sans">Name</Label>
+                <Input
+                  {...register("name")}
+                  className="bg-zinc-200 p-6"
+                  type="text"
+                  placeholder="Name"
+                />
+              </div>
 
-            <div className="w-96">
-              <Label className="font-sans">Confirm Password</Label>
-              <Input
-                {...register("confirmPassword")}
-                className="bg-zinc-200 p-6"
-                type="password"
-                placeholder="Confirm Password"
-              />
+              <div className="flex w-96 flex-col gap-3">
+                <Label className="font-sans">Gender</Label>
+                <select
+                  {...register("gender")}
+                  className="rounded-sm bg-zinc-200 p-2"
+                  value={gender}
+                  onChange={handleGenderChange}
+                >
+                  {GenderOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col gap-6">
-            <div className="w-96">
-              <Label className="font-sans">Name</Label>
-              <Input
-                {...register("name")}
-                className="bg-zinc-200 p-6"
-                type="text"
-                placeholder="Name"
-              />
-            </div>
+          <Button type="submit" className="w-20 rounded-full px-20 py-6">
+            Create Account
+          </Button>
 
-            <div className="w-96">
-              <Label className="font-sans">Gender</Label>
-              <Input
-                {...register("gender")}
-                className="bg-zinc-200 p-6"
-                type="text"
-                placeholder="Your Gender"
-              />
-            </div>
+          <p className="font-sans">
+            By clicking “Create Account”, you agree to our <br />{" "}
+            <span className="text-blue-500">Terms and Conditions </span>.
+          </p>
+        </form>
 
-            <div className="w-96">
-              <Label className="font-sans">Your Photo</Label>
-              <Input
-                {...register("image")}
-                type="text"
-                placeholder="Your Photo"
-              />
-            </div>
+        <div className="w-96">
+          <form className="flex flex-col gap-2" onSubmit={handleImageSubmit}>
+            <Label className="font-sans">Upload Your Photo</Label>
+            <Input type="file" onChange={handleFileChange} />
+            <Button type="submit" disabled={loading}>
+              {loading ? (
+                <ScaleLoader color="#fff" loading={loading} />
+              ) : (
+                "Upload"
+              )}
+            </Button>
 
-            {/* <div className="w-96">
-              <Label className="font-sans">Your Photo</Label>
-              <Input
-                {...register("image")}
-                accept="image/*"
-                multiple
-                className="bg-zinc-200 p-6"
-                type="file"
-                placeholder="Your Photo"
-              />
-            </div> */}
-
-            {/* <div className="w-96">
-              <Label className="font-sans">City</Label>
-              <Input
-                className="bg-zinc-200 p-6"
-                type="text"
-                placeholder="Your City"
-              />
-            </div>
-
-            <div className="w-96">
-              <Label className="font-sans">Phone Number</Label>
-              <Input
-                className="bg-zinc-200 p-6"
-                type="number"
-                placeholder="Phone Number"
-              />
-            </div> */}
-          </div>
+            {imageData && (
+              <div>
+                <h2>Image Uploaded:</h2>
+                <img src={imageData.secure_url} alt="Uploaded" />
+              </div>
+            )}
+          </form>
         </div>
-
-        <Button type="submit" className="w-20 rounded-full px-20 py-6">
-          Create Account
-        </Button>
-
-        <p className="font-sans">
-          By clicking “Create Account”, you agree to our <br />{" "}
-          <span className="text-blue-500">Terms and Conditions </span>.
-        </p>
-      </form>
+      </div>
 
       {/* Footer */}
       <footer className="mt-auto flex items-center justify-center gap-8 bg-primary p-8">
