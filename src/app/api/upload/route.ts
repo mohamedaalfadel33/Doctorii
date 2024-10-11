@@ -1,3 +1,4 @@
+// src/app/api/upload/route.ts
 import { NextResponse } from "next/server";
 import { v2 as cloudinary } from "cloudinary";
 import multer from "multer";
@@ -14,7 +15,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 // This function handles the file upload
-export async function POST(req: Request) {
+export async function POST(req: Request): Promise<Response> {
   const formData = await req.formData();
   const file = formData.get("file") as File;
 
@@ -22,21 +23,26 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
   }
 
-  return new Promise(async (resolve) => {
-    const uploadStream = cloudinary.uploader.upload_stream(
-      { resource_type: "auto" },
-      (error, result) => {
-        if (error) {
-          return resolve(
-            NextResponse.json({ error: error.message }, { status: 500 }),
-          );
-        }
-        return resolve(NextResponse.json(result));
-      },
-    );
+  // Convert the file to a buffer
+  const buffer = Buffer.from(await file.arrayBuffer());
 
-    // Convert the file to a buffer and upload
-    const buffer = Buffer.from(await file.arrayBuffer());
-    uploadStream.end(buffer);
-  });
+  try {
+    const result = await new Promise((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        { resource_type: "auto" },
+        (error, result) => {
+          if (error) {
+            return reject(error);
+          }
+          resolve(result);
+        },
+      );
+
+      uploadStream.end(buffer);
+    });
+
+    return NextResponse.json(result); // Return the upload result
+  } catch (error:any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
 }
