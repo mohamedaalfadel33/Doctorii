@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import axios from 'axios';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import axios from "axios";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 
 type FormData = {
   email: string;
@@ -19,20 +19,18 @@ function LoginPage() {
 
   const onSubmit = async (formData: FormData) => {
     await axios
-      .post('/api/auth/login', formData)
-      .then((response : any) => {
-        console.log('Response Data:', response.data);
-
-        if (response.data.status === 'success' && typeof window !== 'undefined')
+      .post("/api/auth/login", formData)
+      .then((response: any) => {
+        if (response.data.status === "success" && typeof window !== "undefined")
           window.localStorage.setItem(
-            'session',
+            "session",
             JSON.stringify(response.data.data)
           );
 
-        router.push('/');
+        router.push("/");
       })
       .catch((error) => {
-        console.error('Error:', error.response.data);
+        console.error("Error:", error.response.data);
       });
   };
 
@@ -53,7 +51,7 @@ function LoginPage() {
           <div className="w-96">
             <Label className="font-sans">Email</Label>
             <Input
-              {...register('email')}
+              {...register("email")}
               className="bg-zinc-200 p-6"
               type="email"
               placeholder="Your Email Address"
@@ -62,13 +60,13 @@ function LoginPage() {
           <div className="w-96">
             <Label className="font-sans">Password</Label>
             <Input
-              {...register('password')}
+              {...register("password")}
               className="bg-zinc-200 p-6"
               type="password"
               placeholder="Your Password"
             />
           </div>
-          <Link href={'/'} className="font-sans text-sm underline">
+          <Link href={"/"} className="font-sans text-sm underline">
             Forgot your password?
           </Link>
         </div>
@@ -80,9 +78,9 @@ function LoginPage() {
       {/* Footer */}
       <footer className="mt-auto flex items-center justify-center gap-8 bg-primary p-8">
         <h2 className="text-zinc-50">Don&apos;t have an account?</h2>
-        <Link href={'/signup'}>
+        <Link href={"/signup"}>
           <Button
-            variant={'outline'}
+            variant={"outline"}
             className="rounded-full bg-zinc-50 px-20 py-5"
           >
             Create Account

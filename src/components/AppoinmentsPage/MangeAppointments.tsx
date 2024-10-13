@@ -1,8 +1,23 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import { Separator } from "@/components/ui/separator";
 import Appointment from "./Appointment";
+import axios from "axios";
 
-const MangeAppointments = () => {
+function MangeAppointments() {
+  async function getAppointments() {
+    await axios
+      .get("/api/user/get-appointments")
+      .then((response: any) => console.log(response.data.data))
+      .catch((error) => console.log(error.response));
+  }
+  useEffect(function () {
+    async function callApi() {
+      await getAppointments();
+    }
+
+    callApi();
+  }, []);
   return (
     <div className="mt-8 min-h-[50rem] rounded-3xl bg-zinc-300 p-4">
       <h2 className="mb-8 text-center tracking-[0.2rem]">Mange Appointments</h2>
@@ -45,6 +60,6 @@ const MangeAppointments = () => {
       </div>
     </div>
   );
-};
+}
 
 export default MangeAppointments;
