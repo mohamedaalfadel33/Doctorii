@@ -1,21 +1,28 @@
+"use client";
+import useSession from "@/Hooks/useSession";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const Header = () => {
-  return (
- 
+function Header() {
+  const session = useSession() as any;
+  const [load, setLoad] = useState(false);
+
+  useEffect(function () {
+    setLoad(true);
+  }, []);
+  if (load)
+    return (
       <div className="flex items-center gap-8">
         <Image
-          src="/1584844567410.jpeg"
+          src={session?.photo}
           alt="doctor"
           width={150}
           height={1}
           className="rounded-full border-[3px] border-zinc-800"
         />
-        <h2 className="text-4xl">Hello,Mohamed ALGay</h2>
+        <h2 className="text-4xl">Hello, {session?.name}</h2>
       </div>
-
-  );
-};
+    );
+}
 
 export default Header;

@@ -3,7 +3,7 @@ import Search from "@/components/SearchPage/Search";
 import { Button } from "@/components/ui/button";
 import React from "react";
 
-const page = () => {
+function page() {
   return (
     <div className="p-12">
       <div className="flex items-center gap-4">
@@ -13,11 +13,9 @@ const page = () => {
         </Button>
       </div>
 
-      {/* Mange Appointments */}
       <MangeAppointments />
-      
     </div>
   );
-};
+}
 
 export default page;
