@@ -109,7 +109,7 @@ function Page() {
             </p>
           )}
         </div>
-        <Button className="mt-16 w-72 rounded-full bg-blue-400 p-6">
+        <Button className="mt-16 w-72 rounded-full bg-[#567F9D] p-6 text-[#eeeeee]">
           Update Password
         </Button>
       </form>

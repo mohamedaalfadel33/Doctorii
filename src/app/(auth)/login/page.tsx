@@ -60,7 +60,7 @@ function LoginPage() {
     <section className="flex min-h-[89.3vh] flex-col gap-8">
       {/* Main Text */}
       <div className="flex flex-col items-center">
-        <h1 className="text-7xl">Doctorii</h1>
+        <h1 className="text-7xl font-extrabold">Doctorii</h1>
         <h2 className="mt-4 font-sans text-sm">Appointment Made Easier</h2>
       </div>
 
@@ -93,7 +93,10 @@ function LoginPage() {
           </Link>
         </div>
         {error.length !== 0 && <p className="text-destructive">{error}</p>}
-        <Button type="submit" className="rounded-full px-20 py-5">
+        <Button
+          type="submit"
+          className="rounded-full bg-[#567F9D] px-20 py-5 text-[#eeeeee]"
+        >
           Login
         </Button>
       </form>
@@ -104,7 +107,7 @@ function LoginPage() {
         <Link href={"/signup"}>
           <Button
             variant={"outline"}
-            className="rounded-full bg-zinc-50 px-20 py-5"
+            className="rounded-full bg-[#eeeeee] px-20 py-5"
           >
             Create Account
           </Button>

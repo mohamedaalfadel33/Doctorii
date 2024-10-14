@@ -115,7 +115,7 @@ function Search() {
         </div>
       </div>
       <Button
-        className="rounded-full px-24 py-8 text-xl"
+        className="rounded-full bg-[#567F9D] px-24 py-8 text-xl text-[#eeeeee]"
         onClick={() => handleSearch()}
       >
         Search

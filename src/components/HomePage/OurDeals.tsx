@@ -12,7 +12,7 @@ const OurDeals = () => {
   return (
     <section className="p-4">
       <h2 className="text-5xl">Our Deals</h2>
-      <div className="mt-8 rounded-md bg-zinc-300 p-12 lg:mx-24">
+      <div className="mt-8 rounded-md bg-[#DADADB] p-12 lg:mx-24">
         <ImagesSlider />
       </div>
     </section>

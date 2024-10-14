@@ -8,7 +8,7 @@ const Filters = () => {
         <ListFilter size={50} />
         <h2 className="text-4xl">Filters</h2>
       </div>
-      <div className="bg-zinc-300 py-6">
+      <div className="bg-[#DADADB] py-6">
         <div className="">
           <div className="mx-6 flex gap-2">
             <CircleDollarSign />

@@ -32,7 +32,7 @@ function Page() {
         <div className="mt-16 flex justify-center gap-8">
           <Link
             href="/profile/update"
-            className="flex items-center gap-4 rounded-3xl bg-zinc-300 p-24"
+            className="flex items-center gap-4 rounded-3xl bg-[#DADADB] p-24"
           >
             <FaPencilAlt size={25} />
             <p>Update Profile</p>
@@ -40,13 +40,13 @@ function Page() {
 
           <Link
             href="/profile/update-password"
-            className="flex items-center gap-4 rounded-3xl bg-zinc-300 p-24"
+            className="flex items-center gap-4 rounded-3xl bg-[#DADADB] p-24"
           >
             <FaLock size={25} />
             <p>Update Password</p>
           </Link>
 
-          <div className="flex gap-4 rounded-3xl bg-blue-100 p-24">
+          <div className="flex gap-4 rounded-3xl bg-[#CFD7DD] p-24">
             <p>Total Booking</p>
             <p>{data}</p>
           </div>

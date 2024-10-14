@@ -25,7 +25,7 @@ function MangeAppointments() {
   }, []);
 
   return (
-    <div className="mt-8 min-h-[50rem] rounded-3xl bg-zinc-300 p-4">
+    <div className="mt-8 min-h-[50rem] rounded-3xl bg-[#DADADB] p-4">
       <h2 className="mb-8 text-center tracking-[0.2rem]">
         Upcoming Appointments
       </h2>

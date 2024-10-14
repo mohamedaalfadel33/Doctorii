@@ -12,7 +12,7 @@ const AboutDoctorCard = ({
   description,
 }: AboutDoctorCardProps) => {
   return (
-    <div className="w-full rounded-3xl bg-zinc-200 p-8">
+    <div className="w-full rounded-3xl bg-[#DADADB] p-8">
       <div className="flex items-center gap-2 text-xl font-bold">
         {icon}
         <h2>{title}</h2>

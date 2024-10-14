@@ -20,14 +20,14 @@ const page = () => {
       <div className="mt-16 flex w-full justify-center gap-8">
         <Link
           href="/dashboard/update-profile"
-          className="flex w-full items-center justify-center gap-4 rounded-3xl bg-zinc-300 p-24"
+          className="flex w-full items-center justify-center gap-4 rounded-3xl bg-[#DADADB] p-24"
         >
           <FaPencilAlt size={25} />
           <p>Update Profile</p>
         </Link>
         <Link
           href="/dashboard/update-profile"
-          className="flex w-full items-center justify-center gap-4 rounded-3xl bg-zinc-300 p-24"
+          className="flex w-full items-center justify-center gap-4 rounded-3xl bg-[#DADADB] p-24"
         >
           <IoMdTime size={35} />
           <p>Update availability times</p>

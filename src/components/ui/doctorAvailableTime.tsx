@@ -56,7 +56,8 @@ function DoctorAvailableTime({
   return (
     <button
       className={cn(
-        `h-24 w-40 rounded-md bg-sky-100 p-2 font-semibold disabled:cursor-not-allowed`
+        `h-24 w-40 rounded-md bg-[#2B2A33] p-2 font-semibold text-[#eeeeee] disabled:cursor-not-allowed`,
+        notAvailable && "bg-[#2B2A33]/50"
       )}
       onClick={() => {
         makeAppointment();

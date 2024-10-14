@@ -93,7 +93,7 @@ const Page = () => {
     <section className="flex min-h-[89.3vh] flex-col gap-8">
       {/* Main Text */}
       <div className="flex flex-col items-center">
-        <h1 className="text-7xl">Doctorii</h1>
+        <h1 className="text-7xl font-extrabold">Doctorii</h1>
         <h2 className="mt-4 font-sans text-sm">Appointment Made Easier</h2>
       </div>
 
@@ -166,7 +166,10 @@ const Page = () => {
             </div>
           </div>
 
-          <Button type="submit" className="w-20 rounded-full px-20 py-6">
+          <Button
+            type="submit"
+            className="w-20 rounded-full bg-[#567F9D] px-20 py-6 text-[#eeeeee]"
+          >
             Create Account
           </Button>
 
@@ -180,7 +183,11 @@ const Page = () => {
           <form className="flex flex-col gap-2" onSubmit={handleImageSubmit}>
             <Label className="font-sans">Upload Your Photo</Label>
             <Input type="file" onChange={handleFileChange} />
-            <Button type="submit" disabled={loading}>
+            <Button
+              className="bg-[#567F9D] text-[#eeeeee]"
+              type="submit"
+              disabled={loading}
+            >
               {loading ? (
                 <ScaleLoader color="#fff" loading={loading} />
               ) : (
@@ -204,9 +211,9 @@ const Page = () => {
         <Link href={"/login"}>
           <Button
             variant={"outline"}
-            className="rounded-full bg-zinc-50 px-20 py-5"
+            className="rounded-full bg-[#eeeeee] px-20 py-5"
           >
-            Login
+            bg-[#567F9D] text-[#eeeeee] Login
           </Button>
         </Link>
       </footer>
