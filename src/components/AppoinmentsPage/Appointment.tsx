@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 
 import { format } from "date-fns";
+import axios from "axios";
+import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 type AppointmentProps = {
   name: string;
@@ -11,6 +14,7 @@ type AppointmentProps = {
   time: string;
   status: "Confirmed" | "Completed" | "Cancelled";
   cancel: boolean;
+  id: string;
 };
 
 const Appointment = ({
@@ -20,8 +24,22 @@ const Appointment = ({
   time,
   status,
   cancel,
+  id,
 }: AppointmentProps) => {
-  const formattedDate = format(date, "yyyy/MM/dd");
+  const formattedDate = date?.slice(0, 10);
+  const { toast } = useToast();
+
+  async function cancelBooking() {
+    await axios
+      .post(`/api/user/cancel-appointment`, { id })
+      .then((response) => {
+        toast({
+          title: response.data.status,
+          description: response.data.message,
+        });
+      })
+      .catch((error) => {});
+  }
 
   return (
     <div className="grid grid-cols-5 items-center rounded-md bg-zinc-50 p-4 py-6">
@@ -42,7 +60,11 @@ const Appointment = ({
         {status}
       </p>
       {!cancel && (
-        <Button variant={"destructive"} className="py-6">
+        <Button
+          variant={"destructive"}
+          className="py-6"
+          onClick={() => cancelBooking()}
+        >
           Cancel
         </Button>
       )}

@@ -11,10 +11,10 @@ function MangeAppointments() {
     await axios
       .get("/api/user/get-appointments")
       .then((response: any) => {
-        // console.log(response.data.data);
+        console.log(response.data.data);
         setData(response.data.data);
       })
-      .catch((error) => console.log(error.response));
+      .catch((error) => {});
   }
   useEffect(function () {
     async function callApi() {
@@ -24,11 +24,11 @@ function MangeAppointments() {
     callApi();
   }, []);
 
-  console.log(data);
-
   return (
     <div className="mt-8 min-h-[50rem] rounded-3xl bg-zinc-300 p-4">
-      <h2 className="mb-8 text-center tracking-[0.2rem]">Mange Appointments</h2>
+      <h2 className="mb-8 text-center tracking-[0.2rem]">
+        Upcoming Appointments
+      </h2>
       <div>
         <div className="mb-8 grid grid-cols-5 p-4">
           <h3>Doctor Name</h3>
@@ -50,7 +50,12 @@ function MangeAppointments() {
               date={data.appointmentDate}
               time={data.appointmentHour}
               status={data.status}
-              cancel={data.status === "pending" ? true : false}
+              cancel={
+                data?.status === "pending" || data?.status === "completed"
+                  ? false
+                  : true
+              }
+              id={data?._id}
             />
           );
         })}

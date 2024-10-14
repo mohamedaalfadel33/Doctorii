@@ -1,6 +1,7 @@
 import Filters from "@/components/Filters";
 import Search from "@/components/SearchPage/Search";
 import SearchResult from "@/components/SearchPage/SearchResult";
+import { Loader } from "lucide-react";
 import { Suspense } from "react";
 
 function Page() {
@@ -15,7 +16,7 @@ function Page() {
         </div>
 
         <div className="mt-16 flex justify-center">
-          <Suspense>
+          <Suspense fallback={<Loader className="animate-spin" />}>
             <SearchResult />
           </Suspense>
         </div>

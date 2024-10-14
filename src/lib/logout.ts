@@ -7,8 +7,8 @@ export async function logout() {
   // Function to delete a cookie
   await axios
     .get("/api/auth/logout")
-    .then((response) => console.log(response.data))
-    .catch((error) => console.error(error.response.data));
+    .then((response) => {})
+    .catch((error) => {});
   // Delete the auth cookie (or any other cookies you want to clear)
 
   // Optionally, delete other cookies if necessary

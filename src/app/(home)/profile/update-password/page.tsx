@@ -28,14 +28,13 @@ function Page() {
       });
 
       // Handle success response
-      console.log("Password updated successfully:", response.data);
+
       toast({
         title: response.data.status,
         description: response.data.message,
       });
     } catch (error: any) {
       // Handle error response
-      console.error("Error updating password:", error?.response?.data);
       toast({
         title: error.response.data.status,
         description: error.response.data.message,

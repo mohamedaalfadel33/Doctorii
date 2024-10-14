@@ -1,11 +1,18 @@
-import React from "react";
+import DoctorAvailableTime from "../ui/doctorAvailableTime";
 
-const BookingInformation = () => {
+function BookingInformation({ data, doctorId }: any) {
   return (
-    <div className="flex justify-center rounded-3xl bg-zinc-300 p-12">
-      <h2>Booking Information</h2>
+    <div className="flex flex-col items-center justify-center rounded-3xl bg-zinc-300 p-12">
+      <h1 className="mb-auto text-xl font-bold">Booking Information</h1>
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        {data?.availability.map((data: any, i: number) => {
+          return (
+            <DoctorAvailableTime doctorId={doctorId} key={i} data={data} />
+          );
+        })}
+      </div>
     </div>
   );
-};
+}
 
 export default BookingInformation;

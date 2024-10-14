@@ -31,9 +31,11 @@ function Navbar() {
   );
 
   return (
-    <div className="flex justify-between p-4 py-12 lg:px-12">
+    <div className="flex justify-between px-4 py-4 lg:px-12">
       <header className="text-xl">
-        <Link href={"/"}>Logo</Link>
+        <Link href={"/"} className="text-xl font-extrabold tracking-wide">
+          Doctorii
+        </Link>
       </header>
       <div className="flex items-center gap-4 underline">
         {NavLinks.map((nav) => (

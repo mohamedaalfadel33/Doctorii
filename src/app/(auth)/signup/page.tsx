@@ -87,11 +87,10 @@ const Page = () => {
       }),
     });
     const data1 = await res.json();
-    console.log(data1);
   };
 
   return (
-    <section className="flex min-h-[100vh] flex-col gap-8">
+    <section className="flex min-h-[89.3vh] flex-col gap-8">
       {/* Main Text */}
       <div className="flex flex-col items-center">
         <h1 className="text-7xl">Doctorii</h1>
