@@ -23,7 +23,7 @@ const Gallery = () => {
   };
   return (
     <div className="rounded-3xl bg-zinc-300 p-6">
-      <h2 className="mb-4">Doctor Clinic</h2>
+      <h2 className="mb-4 text-xl font-bold">Doctor Clinic</h2>
       <div className="slider-container px-10">
         <Slider {...settings}>
           <div>

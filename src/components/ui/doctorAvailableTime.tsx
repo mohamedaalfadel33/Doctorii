@@ -1,4 +1,7 @@
 import { cn } from "@/lib/utils";
+import axios from "axios";
+import { format } from "date-fns";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 type DoctorAvailableTimeProps = {
@@ -7,33 +10,75 @@ type DoctorAvailableTimeProps = {
   endTime: string;
   className?: string;
   notAvailable?: boolean;
+  data: [
+    {
+      date: string;
+      id: string;
+      hours: [
+        {
+          isAvailable: boolean;
+          start: string;
+          end: string;
+          id: string;
+          currentPatients: string;
+          maxPatients: string;
+        },
+      ];
+    },
+  ];
+  doctorId: string;
 };
 
-const DoctorAvailableTime = ({
-  day,
-  endTime,
-  startTime,
-  className,
-  notAvailable,
-}: DoctorAvailableTimeProps) => {
+function DoctorAvailableTime({
+  data,
+  doctorId,
+}: DoctorAvailableTimeProps | any) {
+  const date = format(data?.date, "yyyy/MM/dd");
+  const dateReq = date.replaceAll("/", "-");
+
+  const router = useRouter();
+
+  async function makeAppointment() {
+    await axios
+      .post("/api/user/book-appointment", {
+        doctor: doctorId,
+        appointmentDate: dateReq,
+        appointmentHour: data?.hours[0].start,
+      })
+      .then((response) => {
+        router.push("/appointments/confirm-appointment");
+      })
+      .catch((error) => {});
+  }
+
+  const notAvailable = !data?.hours.at(0)?.isAvailable;
+
   return (
-    <div className={cn(`rounded-md bg-orange-200 p-2`)}>
-      <h2>{day}</h2>
+    <button
+      className={cn(
+        `h-24 w-40 rounded-md bg-sky-100 p-2 font-semibold disabled:cursor-not-allowed`
+      )}
+      onClick={() => {
+        makeAppointment();
+      }}
+      disabled={notAvailable}
+    >
+      <h2>{date}</h2>
 
       {notAvailable ? (
         <h3>Not Available</h3>
       ) : (
         <>
           <h3>
-            <span className="font-sans">From :</span> {startTime}
+            <span className="font-thin">From :</span> {data?.hours.at(0)?.start}
           </h3>
           <h3>
-            <span className="font-sans">To :</span> {endTime}
+            <span className="font-thin">To :</span> {data?.hours.at(0)?.end}
           </h3>
         </>
       )}
-    </div>
+    </button>
   );
-};
+}
 
 export default DoctorAvailableTime;

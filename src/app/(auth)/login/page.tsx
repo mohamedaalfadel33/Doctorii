@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -16,6 +17,9 @@ type FormData = {
 function LoginPage() {
   const router = useRouter();
   const { register, handleSubmit } = useForm<FormData>();
+  const { toast } = useToast();
+
+  let error = "";
 
   const onSubmit = async (formData: FormData) => {
     await axios
@@ -27,7 +31,25 @@ function LoginPage() {
             JSON.stringify(response.data.data)
           );
 
-        router.push("/");
+        toast({
+          title: response.data.status,
+          description: response.data.message,
+        });
+        if (response.data.status === "fail") {
+          toast({
+            title: response.data.status,
+            description: response.data.message,
+            variant: "destructive",
+          });
+          error = response.message;
+        }
+        if (response.data.status === "success") router.push("/");
+        else
+          toast({
+            title: response.data.status,
+            description: response.data.message,
+            variant: "destructive",
+          });
       })
       .catch((error) => {
         console.error("Error:", error.response.data);
@@ -35,7 +57,7 @@ function LoginPage() {
   };
 
   return (
-    <section className="flex min-h-[100vh] flex-col gap-8">
+    <section className="flex min-h-[89.3vh] flex-col gap-8">
       {/* Main Text */}
       <div className="flex flex-col items-center">
         <h1 className="text-7xl">Doctorii</h1>
@@ -70,6 +92,7 @@ function LoginPage() {
             Forgot your password?
           </Link>
         </div>
+        {error.length !== 0 && <p className="text-destructive">{error}</p>}
         <Button type="submit" className="rounded-full px-20 py-5">
           Login
         </Button>

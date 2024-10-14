@@ -5,61 +5,81 @@ import CustomerReview from "@/components/DoctorProfile/CustomerReview";
 import DoctorProfileCard from "@/components/DoctorProfile/DoctorProfileCard";
 import Gallery from "@/components/DoctorProfile/Gallery";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BsExclamationCircle } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
 
-function page({ params }: any) {
-  const doctorName = params.doctor;
+function Page({ params }: any) {
+  const [data, setData] = useState<any>();
+  const [dataRating, setDataRating] = useState<any>();
 
-  async function makeAppointment() {
-    axios
-      .post("/api/user/book-appointment", {
-        doctor: "67094581370b21bb41991e45",
-        appointmentDate: "2024-10-12",
-        appointmentHour: "12:00",
+  const [isLoad, setIsLoad] = useState(false);
+
+  const doctorId = params.doctor;
+
+  async function getDoctorApi() {
+    await axios
+      .post("/api/doctor/get-doctor", { doctorId })
+      .then((response) => {
+        setData(response.data.data);
       })
-      .then((response) => console.log(response.data))
-      .catch((error) => console.log(error.response.data));
+      .catch((error) => {});
+
+    await axios
+      .post("/api/doctor/get-doctor-rating", { doctorId })
+      .then((response) => {
+        setDataRating(response.data.data);
+      })
+      .catch((error) => {});
   }
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(function () {
-    async function call() {
-      await makeAppointment();
-    }
+  useEffect(
+    function () {
+      getDoctorApi();
+      setIsLoad(true);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
-    call();
-  }, []);
-
-  return (
-    <section className="mx-12">
-      <div className="grid grid-cols-2 gap-4">
-        <DoctorProfileCard name={doctorName} />
-        <div className="flex gap-4">
-          <AboutDoctorCard
-            icon={<BsExclamationCircle size={30} />}
-            title="About the doctor"
-            description="Dr. Ammatar abdo halfawe, Assistant Lecturer of Pediatrics and Newborns - National Research Center/Consultant of Pediatric Chest and Allergy/International Consultant of Breastfeeding and Child Nutrition"
+  if (isLoad)
+    return (
+      <section className="mx-12">
+        <div className="grid grid-cols-2 gap-4">
+          <DoctorProfileCard
+            name={data?.name}
+            visitors={dataRating?.ratingCount}
+            rating={dataRating?.avgRating}
+            specialty={data?.specialty}
           />
-          <AboutDoctorCard
-            icon={<CiLocationOn size={30} />}
-            title="Location"
-            description="Khartoum, AL-Amarat - Ibn Sina Hospital"
+          <div className="flex gap-4">
+            <AboutDoctorCard
+              icon={<BsExclamationCircle size={30} />}
+              title="About the doctor"
+              description={data?.about as string}
+            />
+            <AboutDoctorCard
+              icon={<CiLocationOn size={30} />}
+              title="Location"
+              description={data?.address as string}
+            />
+          </div>
+        </div>
+
+        <div className="mt-8 grid grid-cols-2 gap-4">
+          <Gallery />
+          <BookingInformation data={data} doctorId={doctorId} />
+        </div>
+
+        <div>
+          <CustomerReview
+            doctorId={doctorId}
+            visitors={dataRating?.ratingCount}
+            rating={dataRating?.avgRating}
           />
         </div>
-      </div>
-
-      <div className="mt-8 grid grid-cols-2 gap-4">
-        <Gallery />
-        <BookingInformation />
-      </div>
-
-      <div>
-        <CustomerReview />
-      </div>
-    </section>
-  );
+      </section>
+    );
 }
 
-export default page;
+export default Page;

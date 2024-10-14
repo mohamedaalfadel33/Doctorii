@@ -8,7 +8,7 @@ type StarProps = {
   value?: number;
 };
 
-const Star = ({ value = 4 }: StarProps) => {
+function Star({ value = 4 }: StarProps) {
   return (
     <div className="flex w-36 justify-center rounded-full bg-zinc-50 p-1">
       <Rating
@@ -19,6 +19,6 @@ const Star = ({ value = 4 }: StarProps) => {
       />
     </div>
   );
-};
+}
 
 export default Star;

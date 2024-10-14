@@ -13,11 +13,11 @@ const AboutDoctorCard = ({
 }: AboutDoctorCardProps) => {
   return (
     <div className="w-full rounded-3xl bg-zinc-200 p-8">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 text-xl font-bold">
         {icon}
         <h2>{title}</h2>
       </div>
-      <p className="font-sans mt-2">{description}</p>
+      <p className="mt-2 font-sans">{description}</p>
     </div>
   );
 };
