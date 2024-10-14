@@ -2,6 +2,8 @@ import React from "react";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 
+import { format } from "date-fns";
+
 type AppointmentProps = {
   name: string;
   location: string;
@@ -19,20 +21,22 @@ const Appointment = ({
   status,
   cancel,
 }: AppointmentProps) => {
+  const formattedDate = format(date, "yyyy/MM/dd");
+
   return (
     <div className="grid grid-cols-5 items-center rounded-md bg-zinc-50 p-4 py-6">
       <h2>{name}</h2>
       <p className="font-sans">{location}</p>
       <p className="font-sans">
-        {date} <br />
-        {time}
+        {formattedDate} <br />
+        {time + " AM"}
       </p>
 
       <p
         className={cn(
           "font-sans",
           status === "Cancelled" ? "text-red-500" : "",
-          status === "Completed" ? "text-green-500" : "",
+          status === "Completed" ? "text-green-500" : ""
         )}
       >
         {status}
