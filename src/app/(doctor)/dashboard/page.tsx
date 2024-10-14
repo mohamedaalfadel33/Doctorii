@@ -21,7 +21,7 @@ const DoctorPage = () => {
       <div className="mt-16 flex justify-center gap-8">
         <Link
           href="/dashboard/update-profile"
-          className="flex items-center gap-4 rounded-3xl bg-zinc-300 p-24"
+          className="flex items-center gap-4 rounded-3xl bg-[#DADADB] p-24"
         >
           <FaPencilAlt size={25} />
           <p>Update Profile</p>
@@ -29,7 +29,7 @@ const DoctorPage = () => {
 
         <Link
           href="/profile/update-password"
-          className="flex items-center gap-4 rounded-3xl bg-zinc-300 p-24"
+          className="flex items-center gap-4 rounded-3xl bg-[#DADADB] p-24"
         >
           <FaLock size={25} />
           <p>Update Password</p>
@@ -37,7 +37,7 @@ const DoctorPage = () => {
 
         <Link
           href="/profile/update-password"
-          className="flex items-center gap-4 rounded-3xl bg-zinc-300 p-24"
+          className="flex items-center gap-4 rounded-3xl bg-[#DADADB] p-24"
         >
           <FaRegCalendarAlt size={25} />
           <p>Check Appointments</p>

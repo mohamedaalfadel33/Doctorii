@@ -24,7 +24,7 @@ function UpcomingAppointment() {
 
   if (isLoad)
     return (
-      <div className="mt-16 rounded-3xl bg-blue-100 p-4">
+      <div className="mt-16 rounded-3xl bg-[#CFD7DD] p-4">
         <h2 className="mb-8 text-center tracking-[0.2rem]">
           Upcoming Appointments
         </h2>

@@ -4,9 +4,9 @@ import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "react-hot-toast";
 
-const vip_hala_font = localFont({
-  src: "../../../public/fonts/VIPHala.otf",
-});
+import { Rubik } from "next/font/google";
+
+const rubik = Rubik({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Doctorii login",
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={vip_hala_font.className}>
+      <body className={`${rubik.className} bg-[#eeeeee]`}>
         <Toaster />
         <Navbar />
         {children}

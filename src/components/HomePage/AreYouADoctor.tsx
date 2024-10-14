@@ -28,7 +28,7 @@ const AreYouADoctor = () => {
           <Image src={"/doctor.jpg"} alt="doctor" width={600} height={400} />
         </div>
         <Link href={"/signup"}>
-          <Button className="mb-auto rounded-full bg-zinc-50 p-8 text-zinc-800 hover:bg-zinc-200 lg:p-24 lg:text-7xl">
+          <Button className="mb-auto rounded-full bg-[#eeeeee] p-8 text-zinc-800 hover:bg-zinc-200 lg:p-24 lg:text-7xl">
             JOIN US
             <span>
               <ArrowUpRight size={140} />

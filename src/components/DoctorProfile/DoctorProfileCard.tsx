@@ -6,7 +6,7 @@ import Star from "../ui/star";
 
 const DoctorProfileCard = ({ name, rating, visitors, specialty }: any) => {
   return (
-    <div className="flex gap-2 rounded-3xl bg-sky-700/75 p-8">
+    <div className="flex gap-2 rounded-3xl bg-[#567F9D] p-8">
       <div>
         <Image
           src="/1584844567410.jpeg"
@@ -18,7 +18,7 @@ const DoctorProfileCard = ({ name, rating, visitors, specialty }: any) => {
       </div>
 
       <div className="flex flex-col gap-1">
-        <h2 className="text-3xl font-extrabold capitalize">
+        <h2 className="text-3xl font-extrabold capitalize text-[#EEEEEE]">
           <span className="">Dr.</span> {name}
         </h2>
         <Badge className="bg-zinc-800" text={specialty} />

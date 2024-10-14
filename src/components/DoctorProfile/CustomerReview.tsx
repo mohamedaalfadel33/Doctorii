@@ -30,7 +30,7 @@ function CustomerReview({ visitors, rating, doctorId }: any) {
 
   if (isLoad)
     return (
-      <div className="mt-4 min-h-[28rem] rounded-3xl bg-zinc-300 p-4">
+      <div className="mt-4 min-h-[28rem] rounded-3xl bg-[#DADADB] p-4">
         <h2 className="text-center">Customers Reviews</h2>
 
         <div className="rounded-3xl bg-zinc-800 p-8">

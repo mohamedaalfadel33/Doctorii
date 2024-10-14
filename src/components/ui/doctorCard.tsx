@@ -37,7 +37,7 @@ type dataType = {
 
 function DoctorCard({ data }: dataType | any) {
   return (
-    <div className="mt-4 flex gap-4 rounded-md bg-zinc-300 p-8">
+    <div className="mt-4 flex gap-4 rounded-md bg-[#DADADB] p-8">
       <div>
         <Image
           src={data?.photo}
