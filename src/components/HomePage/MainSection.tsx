@@ -4,9 +4,9 @@ import Search from "../SearchPage/Search";
 
 const MainSection = () => {
   return (
-    <section>
+    <section className="flex h-screen flex-col items-center justify-center">
       <div className="flex flex-col items-center">
-        <h1 className="text-7xl">Doctorii</h1>
+        <h1 className="text-7xl font-extrabold">Doctorii</h1>
         <h2 className="mt-4 font-sans text-sm">Appointment Made Easier</h2>
       </div>
       <div className="mt-16 flex flex-col items-center gap-8">

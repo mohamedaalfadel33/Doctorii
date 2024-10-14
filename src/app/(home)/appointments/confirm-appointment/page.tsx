@@ -5,25 +5,27 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { MdCreditScore } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa6";
-import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+
 import axios from "axios";
-import { format } from "date-fns";
+
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 function Page() {
   const [data, setData] = useState<any>();
   const [isLoad, setIsLoad] = useState(false);
+
+  const router = useRouter();
 
   const { toast } = useToast();
   async function apiRequest() {
     await axios
       .get("/api/user/get-appointments")
       .then((response) => {
-        console.log(response.data);
         response.data.status === "success" &&
           setData(response.data.data.at(-1));
       })
-      .catch((error) => console.log(error.response.data));
+      .catch((error) => {});
   }
   useEffect(function () {
     apiRequest();
@@ -31,19 +33,18 @@ function Page() {
   }, []);
 
   const id = data?._id;
-  console.log(id);
 
   async function cancelBooking() {
     await axios
       .post(`/api/user/cancel-appointment`, { id })
       .then((response) => {
-        console.log(response.data);
         toast({
           title: response.data.status,
           description: response.data.message,
         });
+        router.push("/");
       })
-      .catch((error) => console.log(error.response.data));
+      .catch((error) => {});
   }
 
   if (isLoad)
@@ -52,7 +53,7 @@ function Page() {
         <div className="flex flex-col items-center justify-center gap-8 rounded-xl bg-sky-700 p-12 text-zinc-50">
           <h2>Booking Information</h2>
           <MdCreditScore size={150} />
-          <p>Your booking has been confirmed</p>
+          <p className="text-2xl font-bold">Your booking has been confirmed</p>
           <Separator />
           <h2>Booking Details</h2>
           <div className="flex w-full justify-between">

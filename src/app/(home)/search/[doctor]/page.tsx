@@ -16,7 +16,6 @@ function Page({ params }: any) {
   const [isLoad, setIsLoad] = useState(false);
 
   const doctorId = params.doctor;
-  console.log(doctorId);
 
   async function getDoctorApi() {
     await axios
@@ -24,14 +23,14 @@ function Page({ params }: any) {
       .then((response) => {
         setData(response.data.data);
       })
-      .catch((error) => console.log(error?.response?.data));
+      .catch((error) => {});
 
     await axios
       .post("/api/doctor/get-doctor-rating", { doctorId })
       .then((response) => {
         setDataRating(response.data.data);
       })
-      .catch((error) => console.log(error?.response?.data));
+      .catch((error) => {});
   }
 
   useEffect(

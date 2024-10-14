@@ -36,8 +36,6 @@ type dataType = {
 };
 
 function DoctorCard({ data }: dataType | any) {
-  console.log(data);
-
   return (
     <div className="mt-4 flex gap-4 rounded-md bg-zinc-300 p-8">
       <div>
@@ -51,8 +49,8 @@ function DoctorCard({ data }: dataType | any) {
       </div>
 
       <div className="flex flex-col gap-1">
-        <h2>
-          <span className="font-sans">Dr.</span> {data?.name}
+        <h2 className="text-xl font-extrabold capitalize">
+          <span className="font-bold">Dr.</span> {data?.name}
         </h2>
         <p className="font-sans">{data?.about}</p>
 
@@ -104,7 +102,7 @@ function DoctorCard({ data }: dataType | any) {
           })}
         </div>
         <div className="mt-8 flex justify-center">
-          <Button className="w-full p-12">Check Out</Button>
+          <Button className="w-full p-12 text-2xl">Check details</Button>
         </div>
       </div>
     </div>

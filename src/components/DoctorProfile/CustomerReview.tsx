@@ -16,7 +16,7 @@ function CustomerReview({ visitors, rating, doctorId }: any) {
       .then((response) => {
         setData(response.data.data);
       })
-      .catch((error) => console.log(error?.response?.data));
+      .catch((error) => {});
   }
 
   useEffect(
@@ -28,7 +28,6 @@ function CustomerReview({ visitors, rating, doctorId }: any) {
     []
   );
 
-  console.log(data);
   if (isLoad)
     return (
       <div className="mt-4 min-h-[28rem] rounded-3xl bg-zinc-300 p-4">

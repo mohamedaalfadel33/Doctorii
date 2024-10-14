@@ -13,12 +13,9 @@ function Page() {
   const { toast } = useToast();
 
   const onSubmit = async (formData: any) => {
-    console.log(formData);
-
     await axios
       .patch("/api/user/update-user", { ...formData, photo: "" })
       .then((response: any) => {
-        console.log(response.data);
         toast({
           title: response.data.status,
           description: response.data.message,

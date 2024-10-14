@@ -9,11 +9,11 @@ export default function Home() {
     <main>
       <MainSection />
 
-      <OurDoctors />
+      {/* <OurDoctors />
 
-      <OurDeals />
+      <OurDeals /> */}
 
-      <TopSpecialties />
+      {/* <TopSpecialties /> */}
 
       <AreYouADoctor />
     </main>

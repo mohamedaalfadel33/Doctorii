@@ -6,7 +6,7 @@ import Star from "../ui/star";
 
 const DoctorProfileCard = ({ name, rating, visitors, specialty }: any) => {
   return (
-    <div className="flex gap-2 rounded-3xl bg-sky-300/40 p-8">
+    <div className="flex gap-2 rounded-3xl bg-sky-700/75 p-8">
       <div>
         <Image
           src="/1584844567410.jpeg"
@@ -18,8 +18,8 @@ const DoctorProfileCard = ({ name, rating, visitors, specialty }: any) => {
       </div>
 
       <div className="flex flex-col gap-1">
-        <h2>
-          <span className="font-sans">Dr.</span> {name}
+        <h2 className="text-3xl font-extrabold capitalize">
+          <span className="">Dr.</span> {name}
         </h2>
         <Badge className="bg-zinc-800" text={specialty} />
 
@@ -29,7 +29,7 @@ const DoctorProfileCard = ({ name, rating, visitors, specialty }: any) => {
             <MdGroups2 size={20} />
             <p>
               <span className="mx-1 text-xs">{visitors}</span>
-              <span className="font-sans text-xs">Visitors</span>
+              <span className="text-xs font-medium">Visitors</span>
             </p>
           </div>
         </div>

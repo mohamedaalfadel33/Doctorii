@@ -19,7 +19,6 @@ function Search() {
   const router = useRouter();
 
   function handleSearch() {
-    console.log("searching...");
     router.push(`/search?name=${name || ""}`);
   }
 
@@ -43,12 +42,12 @@ function Search() {
                 value={position}
                 onValueChange={setPosition}
               >
-                <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="top">All</DropdownMenuRadioItem>
                 <DropdownMenuRadioItem value="bottom">
-                  Bottom
+                  Dentist
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem value="right">
-                  Right
+                  Neurology
                 </DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
             </DropdownMenuContent>
@@ -70,12 +69,8 @@ function Search() {
                 value={position}
                 onValueChange={setPosition}
               >
-                <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="bottom">
-                  Bottom
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="right">
-                  Right
+                <DropdownMenuRadioItem value="top">
+                  Khartoum
                 </DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
             </DropdownMenuContent>
@@ -97,12 +92,9 @@ function Search() {
                 value={position}
                 onValueChange={setPosition}
               >
-                <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="top">All</DropdownMenuRadioItem>
                 <DropdownMenuRadioItem value="bottom">
-                  Bottom
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="right">
-                  Right
+                  AL-Amarat
                 </DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
             </DropdownMenuContent>

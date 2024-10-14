@@ -46,18 +46,17 @@ function DoctorAvailableTime({
         appointmentHour: data?.hours[0].start,
       })
       .then((response) => {
-        console.log(response.data);
-        router.push("/appointments/confirm");
+        router.push("/appointments/confirm-appointment");
       })
-      .catch((error) => console.log(error?.response?.data));
+      .catch((error) => {});
   }
 
   const notAvailable = !data?.hours.at(0)?.isAvailable;
-  console.log(data);
+
   return (
     <button
       className={cn(
-        `h-24 w-40 rounded-md bg-sky-100 p-2 disabled:cursor-not-allowed`
+        `h-24 w-40 rounded-md bg-sky-100 p-2 font-semibold disabled:cursor-not-allowed`
       )}
       onClick={() => {
         makeAppointment();
@@ -71,10 +70,10 @@ function DoctorAvailableTime({
       ) : (
         <>
           <h3>
-            <span className="font-sans">From :</span> {data?.hours.at(0)?.start}
+            <span className="font-thin">From :</span> {data?.hours.at(0)?.start}
           </h3>
           <h3>
-            <span className="font-sans">To :</span> {data?.hours.at(0)?.end}
+            <span className="font-thin">To :</span> {data?.hours.at(0)?.end}
           </h3>
         </>
       )}

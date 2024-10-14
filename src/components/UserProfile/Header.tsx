@@ -10,10 +10,9 @@ function Header() {
     await axios
       .get("/api/user/get-patient")
       .then((response) => {
-        console.log(response.data);
         response.data.status === "success" && setData(response.data.data);
       })
-      .catch((error) => console.log(error.response.data));
+      .catch((error) => {});
   }
 
   useEffect(function () {
