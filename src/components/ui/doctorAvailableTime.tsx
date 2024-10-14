@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
+import axios from "axios";
 import { format } from "date-fns";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 type DoctorAvailableTimeProps = {
@@ -24,20 +26,45 @@ type DoctorAvailableTimeProps = {
       ];
     },
   ];
+  doctorId: string;
 };
 
 function DoctorAvailableTime({
-  day,
-  endTime,
-  startTime,
-  className,
-  notAvailable,
   data,
+  doctorId,
 }: DoctorAvailableTimeProps | any) {
-  notAvailable = !data?.hours.at(0)?.isAvailable;
+  const date = format(data?.date, "yyyy/MM/dd");
+  const dateReq = date.replaceAll("/", "-");
+
+  const router = useRouter();
+
+  async function makeAppointment() {
+    await axios
+      .post("/api/user/book-appointment", {
+        doctor: doctorId,
+        appointmentDate: dateReq,
+        appointmentHour: data?.hours[0].start,
+      })
+      .then((response) => {
+        console.log(response.data);
+        router.push("/appointments/confirm");
+      })
+      .catch((error) => console.log(error?.response?.data));
+  }
+
+  const notAvailable = !data?.hours.at(0)?.isAvailable;
+  console.log(data);
   return (
-    <div className={cn(`w-40 rounded-md bg-orange-200 p-2`)}>
-      <h2>{format(data?.date, "MM/dd/yyyy")}</h2>
+    <button
+      className={cn(
+        `h-24 w-40 rounded-md bg-sky-100 p-2 disabled:cursor-not-allowed`
+      )}
+      onClick={() => {
+        makeAppointment();
+      }}
+      disabled={notAvailable}
+    >
+      <h2>{date}</h2>
 
       {notAvailable ? (
         <h3>Not Available</h3>
@@ -51,7 +78,7 @@ function DoctorAvailableTime({
           </h3>
         </>
       )}
-    </div>
+    </button>
   );
 }
 

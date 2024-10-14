@@ -69,7 +69,7 @@ function Page({ params }: any) {
 
         <div className="mt-8 grid grid-cols-2 gap-4">
           <Gallery />
-          <BookingInformation />
+          <BookingInformation data={data} doctorId={doctorId} />
         </div>
 
         <div>
