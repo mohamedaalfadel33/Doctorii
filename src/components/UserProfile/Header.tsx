@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 function Header() {
-  const [data, setData] = useState();
+  const [data, setData] = useState<any>();
 
   async function apiRequest() {
     await axios

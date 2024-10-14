@@ -12,6 +12,7 @@ type dataType = {
   name?: string;
   photo?: string;
   specialty?: string;
+  map: any;
 };
 
 function SearchResult() {
@@ -31,13 +32,12 @@ function SearchResult() {
       .catch((error) => console.log(error?.response?.data));
   }
 
-  console.log(data);
-
   useEffect(
     function () {
       searchApi();
       setIsLoad(true);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [name]
   );
 
@@ -73,11 +73,14 @@ function SearchResult() {
         </div>
         <div className="mt-4 flex flex-col gap-4">
           <h2 className="font-sans">showing 100 doctor</h2>
-          <Link href={`/search/${data?.name}`}>
-            {data?.map((data) => {
-              return <DoctorCard key={data.id} data={data} />;
-            })}
-          </Link>
+          {data?.map((data: any) => {
+            console.log(data);
+            return (
+              <Link href={`/search/${data?._id}`} key={data.id}>
+                <DoctorCard data={data} />
+              </Link>
+            );
+          })}
         </div>
       </section>
     );

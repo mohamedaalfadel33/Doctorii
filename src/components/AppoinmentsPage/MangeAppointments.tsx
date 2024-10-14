@@ -5,7 +5,7 @@ import Appointment from "./Appointment";
 import axios from "axios";
 
 function MangeAppointments() {
-  const [data, setData] = useState();
+  const [data, setData] = useState<any>();
 
   async function getAppointments() {
     await axios

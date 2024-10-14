@@ -1,6 +1,7 @@
 import Filters from "@/components/Filters";
 import Search from "@/components/SearchPage/Search";
 import SearchResult from "@/components/SearchPage/SearchResult";
+import { Suspense } from "react";
 
 function Page() {
   return (
@@ -14,7 +15,9 @@ function Page() {
         </div>
 
         <div className="mt-16 flex justify-center">
-          <SearchResult />
+          <Suspense>
+            <SearchResult />
+          </Suspense>
         </div>
       </div>
     </main>

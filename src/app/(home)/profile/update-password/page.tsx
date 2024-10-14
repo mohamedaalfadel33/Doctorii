@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 
 import { useToast } from "@/hooks/use-toast";
 
-function page() {
+function Page() {
   const { toast } = useToast();
   const {
     register,
@@ -33,7 +33,7 @@ function page() {
         title: response.data.status,
         description: response.data.message,
       });
-    } catch (error) {
+    } catch (error: any) {
       // Handle error response
       console.error("Error updating password:", error?.response?.data);
       toast({
@@ -65,7 +65,7 @@ function page() {
           />
           {errors.oldPassword && (
             <p className="text-sm text-destructive">
-              {errors.oldPassword.message}
+              {errors.oldPassword.message as string}
             </p>
           )}
         </div>
@@ -87,7 +87,7 @@ function page() {
           />
           {errors.newPassword && (
             <p className="text-sm text-destructive">
-              {errors.newPassword.message}
+              {errors.newPassword.message as string}
             </p>
           )}
         </div>
@@ -106,7 +106,7 @@ function page() {
           />
           {errors.confirmNewPassword && (
             <p className="text-sm text-destructive">
-              {errors.confirmNewPassword.message}
+              {errors.confirmNewPassword.message as string}
             </p>
           )}
         </div>
@@ -124,4 +124,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

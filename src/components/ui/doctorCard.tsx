@@ -10,7 +10,7 @@ import DoctorAvailableTime from "./doctorAvailableTime";
 import { Button } from "./button";
 
 type dataType = {
-  id?: string;
+  _id?: string;
   name?: string;
   photo?: string;
   specialty?: string;
@@ -35,7 +35,9 @@ type dataType = {
   ];
 };
 
-const DoctorCard = ({ data }: dataType) => {
+function DoctorCard({ data }: dataType | any) {
+  console.log(data);
+
   return (
     <div className="mt-4 flex gap-4 rounded-md bg-zinc-300 p-8">
       <div>
@@ -55,11 +57,11 @@ const DoctorCard = ({ data }: dataType) => {
         <p className="font-sans">{data?.about}</p>
 
         <div className="flex items-center gap-2">
-          <Star />
+          <Star value={data?.ratings.avgRating} />
           <div className="flex items-center rounded-full bg-zinc-100 p-[2px] px-3">
             <MdGroups2 size={20} />
             <p>
-              <span className="mx-1 text-xs">3361</span>
+              <span className="mx-1 text-xs">{data?.ratings.ratingCount}</span>
               <span className="font-sans text-xs">Visitors</span>
             </p>
           </div>
@@ -89,7 +91,7 @@ const DoctorCard = ({ data }: dataType) => {
 
       <div>
         <div className="flex gap-2">
-          {data?.availability.map((av, i) => {
+          {data?.availability.map((av: any, i: number) => {
             return (
               <DoctorAvailableTime
                 key={i}
@@ -107,6 +109,6 @@ const DoctorCard = ({ data }: dataType) => {
       </div>
     </div>
   );
-};
+}
 
 export default DoctorCard;

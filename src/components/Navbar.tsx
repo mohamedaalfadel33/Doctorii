@@ -1,5 +1,5 @@
 "use client";
-import useSession from "@/Hooks/useSession";
+import useSession from "@/hooks/useSession";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";

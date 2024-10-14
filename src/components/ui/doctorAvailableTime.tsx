@@ -33,7 +33,7 @@ function DoctorAvailableTime({
   className,
   notAvailable,
   data,
-}: DoctorAvailableTimeProps) {
+}: DoctorAvailableTimeProps | any) {
   notAvailable = !data?.hours.at(0)?.isAvailable;
   return (
     <div className={cn(`w-40 rounded-md bg-orange-200 p-2`)}>
