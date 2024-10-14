@@ -13,12 +13,12 @@ function Header() {
   if (load)
     return (
       <div className="flex items-center gap-8">
-        <Image
+        <img
           src={session?.photo}
           alt="doctor"
           width={150}
-          height={1}
-          className="rounded-full border-[3px] border-zinc-800"
+          height={150}
+          className="rounded-md border-[3px] border-zinc-800"
         />
         <h2 className="text-4xl">Hello, {session?.name}</h2>
       </div>

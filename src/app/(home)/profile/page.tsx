@@ -5,6 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { FaPencilAlt } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
+
 const page = () => {
   return (
     <div className="p-12">
