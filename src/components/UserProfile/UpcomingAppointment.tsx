@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Separator } from "@/components/ui/separator";
 import Appointment from "../AppoinmentsPage/Appointment";
@@ -41,3 +42,22 @@ const UpcomingAppointment = () => {
 };
 
 export default UpcomingAppointment;
+
+const x = {
+  _id: "670b4518548702b1e74f3ebc",
+  patient: "6709395a2c413d5280f4f307",
+  doctor: {
+    _id: "67094581370b21bb41991e45",
+    name: "musab ibrahim",
+    photo: "https://example.com/newphoto.jpg",
+    specialty: "Neurology",
+    id: "67094581370b21bb41991e45",
+  },
+  appointmentDate: "2024-10-12T00:00:00.000Z",
+  appointmentHour: "12:00",
+  status: "pending",
+  isPaid: false,
+  createdAt: "2024-10-13T03:57:12.801Z",
+  updatedAt: "2024-10-13T03:57:12.801Z",
+  __v: 0,
+};

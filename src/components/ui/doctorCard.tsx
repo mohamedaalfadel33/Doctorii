@@ -9,26 +9,50 @@ import { CiDollar } from "react-icons/ci";
 import DoctorAvailableTime from "./doctorAvailableTime";
 import { Button } from "./button";
 
-const DoctorCard = () => {
+type dataType = {
+  id?: string;
+  name?: string;
+  photo?: string;
+  specialty?: string;
+  about?: string;
+  price: string;
+
+  availability: [
+    {
+      date: string;
+      id: string;
+      hours: [
+        {
+          isAvailable: boolean;
+          start: string;
+          end: string;
+          id: string;
+          currentPatients: string;
+          maxPatients: string;
+        },
+      ];
+    },
+  ];
+};
+
+const DoctorCard = ({ data }: dataType) => {
   return (
-    <div className="flex gap-4 rounded-md bg-zinc-300 p-8">
+    <div className="mt-4 flex gap-4 rounded-md bg-zinc-300 p-8">
       <div>
         <Image
-          src={"/1584844567410.jpeg"}
+          src={data?.photo}
           alt="doctor"
           width={90}
-          height={1}
+          height={90}
           className="rounded-full border-[3px] border-zinc-800"
         />
       </div>
 
       <div className="flex flex-col gap-1">
         <h2>
-          <span className="font-sans">Dr.</span> Ammar abdo halfawe
+          <span className="font-sans">Dr.</span> {data?.name}
         </h2>
-        <p className="font-sans">
-          Member of Scientific Council of Sudanese board of Pediatric...
-        </p>
+        <p className="font-sans">{data?.about}</p>
 
         <div className="flex items-center gap-2">
           <Star />
@@ -43,8 +67,8 @@ const DoctorCard = () => {
 
         <div className="flex flex-col gap-1">
           <Badge
-            className="bg-sky-400"
-            text={"Pediatric Specialized in Pediatric Allergy and Immunology"}
+            className="bg-sky-600"
+            text={data?.specialty}
             icon={<FaUserDoctor />}
           />
           <Badge
@@ -54,7 +78,10 @@ const DoctorCard = () => {
           />
           <Badge
             className="bg-zinc-800"
-            text={"5,000 SDG"}
+            text={
+              data?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+              " SDG"
+            }
             icon={<CiDollar />}
           />
         </div>
@@ -62,27 +89,17 @@ const DoctorCard = () => {
 
       <div>
         <div className="flex gap-2">
-          <DoctorAvailableTime
-            day="Monday"
-            startTime="10:00 AM"
-            endTime="12:00 PM"
-          />
-          <DoctorAvailableTime
-            day="Monday"
-            startTime="10:00 AM"
-            endTime="12:00 PM"
-          />
-          <DoctorAvailableTime
-            day="Monday"
-            startTime="10:00 AM"
-            endTime="12:00 PM"
-          />
-          <DoctorAvailableTime
-            day="13/10/2024"
-            startTime="10:00 AM"
-            endTime="12:00 PM"
-            notAvailable={true}
-          />
+          {data?.availability.map((av, i) => {
+            return (
+              <DoctorAvailableTime
+                key={i}
+                data={av}
+                day="Monday"
+                startTime="10:00 AM"
+                endTime="12:00 PM"
+              />
+            );
+          })}
         </div>
         <div className="mt-8 flex justify-center">
           <Button className="w-full p-12">Check Out</Button>

@@ -23,7 +23,6 @@ function Navbar() {
     function () {
       if (session) {
         setIsAuth(true);
-        console.log(session);
       } else {
         setIsAuth(false);
       }

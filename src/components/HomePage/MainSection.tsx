@@ -12,9 +12,6 @@ const MainSection = () => {
       <div className="mt-16 flex flex-col items-center gap-8">
         <h1 className="text-3xl">Book a Doctor</h1>
         <Search />
-        <Button className="rounded-full bg-blue-400 px-24 py-8 text-xl">
-          Search
-        </Button>
         <p className="mt-12 text-center font-sans">
           <span className="text-blue-400">Doctorii</span>
            is your one-stop online platform for convenient and affordable

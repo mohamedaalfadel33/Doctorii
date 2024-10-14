@@ -5,32 +5,16 @@ import CustomerReview from "@/components/DoctorProfile/CustomerReview";
 import DoctorProfileCard from "@/components/DoctorProfile/DoctorProfileCard";
 import Gallery from "@/components/DoctorProfile/Gallery";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BsExclamationCircle } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
 
-function page({ params }: any) {
+function formatName(name: string) {
+  return name.replace(/-(\w)/, (match, letter) => " " + letter.toUpperCase());
+}
+
+function Page({ params }: any) {
   const doctorName = params.doctor;
-
-  async function makeAppointment() {
-    axios
-      .post("/api/user/book-appointment", {
-        doctor: "67094581370b21bb41991e45",
-        appointmentDate: "2024-10-12",
-        appointmentHour: "12:00",
-      })
-      .then((response) => console.log(response.data))
-      .catch((error) => console.log(error.response.data));
-  }
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(function () {
-    async function call() {
-      await makeAppointment();
-    }
-
-    call();
-  }, []);
 
   return (
     <section className="mx-12">
@@ -62,4 +46,4 @@ function page({ params }: any) {
   );
 }
 
-export default page;
+export default Page;
