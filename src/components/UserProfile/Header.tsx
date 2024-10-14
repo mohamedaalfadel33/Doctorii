@@ -18,6 +18,7 @@ function Header() {
   useEffect(function () {
     apiRequest();
   }, []);
+  
   return (
     <div className="flex items-center gap-8">
       <Image
@@ -30,6 +31,7 @@ function Header() {
       <h2 className="text-4xl">Hello, {data?.name}</h2>
     </div>
   );
+
 }
 
 export default Header;
